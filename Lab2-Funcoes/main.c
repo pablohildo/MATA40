@@ -41,7 +41,20 @@ int num;
 		printf("ERRO: falha na copia do vetor P -> Q!!\n");
 		exit(-1);
 		}
-	
+
+	// printf("ORIGINAL\n");
+	// 	for (int i = 0; i < Q.numElem; i++)
+	// 	{
+	// 		printf("%.2f\n", Q.V[i]);
+	// 	}
+	// printf("INVERTIDO\n");
+	// if(inverteVetor(&Q)){
+	// 	for (int i = 0; i < Q.numElem; i++)
+	// 	{
+	// 		printf("%.2f\n", Q.V[i]);
+	// 	}
+	// }
+
 	inverteVetor(&Q);
 	
 	multiVetor(&Q, 12.4);
