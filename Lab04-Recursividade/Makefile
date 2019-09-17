@@ -4,16 +4,12 @@
 .cpp.o:	$*.h
 	g++	-c $*.cpp
 
-all:	recursaoClassicos ordenaVetor curvaKoch
+all:	recursaoClassicos ordenaVetor 
 
 recursaoClassicos:  recursaoClassicos.o
 	gcc -o $@ $^
 
 ordenaVetor:  ordenaVetor.o
-	gcc -o $@ $^
-
-curvaKoch:  curvaKoch.o winGL.o 
-	gcc -o $@ $^ -lGL -lGLU -lglut
 
 clean:
-	rm *.o *.*~ *~ recursaoClassicos ordenaVetor curvaKoch
+	rm *.o *.*~ *~ recursaoClassicos ordenaVetor 
