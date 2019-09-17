@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-#define MAX_ELEM 10000
+#define MAX_ELEM 10
 
 typedef struct { int numElem;
                  int Vec[MAX_ELEM];
@@ -56,9 +56,11 @@ void imprimeVetor (Vetor V) {
 // ******                                   ******
 // ***********************************************
 
-void imprimeVetorRecursivo () {
-	
-
+void imprimeVetorRecursivo (Vetor V, int i) {
+	if(i != -1){
+		printf("V[%d] = %d\n ", i, V.Vec[i]);
+		imprimeVetorRecursivo(V, i-1);
+	}
 }
 
 // ***********************************************
@@ -67,10 +69,11 @@ void imprimeVetorRecursivo () {
 // ** forma recursiva.                          **
 // ***********************************************
 
-bool buscaBinariaRecursiva(Vetor V, int k) {
-	
-	return false;
-	
+bool buscaBinariaRecursiva(Vetor V, int k, int beg, int end) {
+	int m = beg+end/2;
+	if (V.Vec[m] == k) return true;
+	if (V.Vec[m] < k) return buscaBinariaRecursiva(V, k, m, end);
+	if (V.Vec[m] > k) return buscaBinariaRecursiva(V, k, beg, m);
 }
 
 // ***********************************************
@@ -78,9 +81,23 @@ bool buscaBinariaRecursiva(Vetor V, int k) {
 // ** retorna o vetor ordenado.                 **
 // ***********************************************
 
-void OrdenaVetor(Vetor V) {
-	
-	
+void swap(int *a, int *b) {
+	int aux = *a;
+	*a = *b;
+	*b = aux;
+}
+
+void OrdenaVetor(Vetor *V, int n) {
+	if (n<1) return;
+	for (int i = 0; i < n; i++)
+	{
+		if (V->Vec[i] > V->Vec[i+1])
+		{
+			swap(&V->Vec[i], &V->Vec[i+1]);
+		}
+		
+	}
+	OrdenaVetor(V, n-1);
 }
 
 // ***********************************************
@@ -101,12 +118,12 @@ int i = 0;
 	
     imprimeVetor(v);
 
-    OrdenaVetor(v);
+    OrdenaVetor(&v, v.numElem-1);
 
-    imprimeVetorRecursivo();
+    imprimeVetorRecursivo(v, v.numElem-1);
 
     for (i = 0 ; i < 100 ; i++)
-    	if (buscaBinariaRecursiva(v, i))
+    	if (buscaBinariaRecursiva(v, i, 0, v.numElem-1))
     		printf ("[ V ] %d\n", i);
     	else
     		printf ("[ X ] %d\n", i);
