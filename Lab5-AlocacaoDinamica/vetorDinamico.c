@@ -79,7 +79,11 @@ bool somaVetores(tVetorDinamico V0, tVetorDinamico V1, tVetorDinamico* V2) {
 /* *********************************************** */
 /* *********************************************** */
 bool concatVetores(tVetorDinamico V0, tVetorDinamico V1, tVetorDinamico* V2) {
-
+	if (V2->MaxElem >= (V0.numElem + V1.numElem))
+	{
+		
+	}
+	
 	return false;
 	
 }
